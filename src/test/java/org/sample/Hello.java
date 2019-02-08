@@ -1,6 +1,7 @@
 package org.sample;
 
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +16,7 @@ import io.cucumber.datatable.DataTable;
 import junit.framework.Assert;
 
 public class Hello {
-    static WebDriver d;
+   static WebDriver d;
 @Given("The user page")
 public void the_user_page() {
 	System.setProperty("webdriver.chrome.driver", "C:\\Users\\Greens-17\\Downloads\\eclipse\\karthi\\cucumber1\\driver\\chromedriver.exe");
@@ -32,11 +33,11 @@ public void the_user_click_register_to_create_the_form() {
 
 
 @When("The user-one fill in the form details")
-public void the_user_one_fill_in_the_form_details(DataTable dataTable) {
-	List<String> insDetails = dataTable.asList();
-	d.findElement(By.id("user_firstname")).sendKeys(insDetails.get(0));
-	  d.findElement(By.id("user_surname")).sendKeys(insDetails.get(1));
-	  d.findElement(By.id("user_phone")).sendKeys(insDetails.get(2));
+public void the_user_one_fill_in_the_form_details(DataTable insDetails) {
+	Map<String, String> insDetails1 = insDetails.asMap(String.class, String.class);
+	d.findElement(By.id("user_firstname")).sendKeys(insDetails1.get("d1"));
+	  d.findElement(By.id("user_surname")).sendKeys(insDetails1.get("d2"));
+	  d.findElement(By.id("user_phone")).sendKeys(insDetails1.get("d3"));
 	  WebElement dob = d.findElement(By.id("user_dateofbirth_1i"));
 	  Select s=new Select(dob);
 	   s.selectByValue("1994");
@@ -46,13 +47,13 @@ public void the_user_one_fill_in_the_form_details(DataTable dataTable) {
 	    WebElement dob2 = d.findElement(By.id("user_dateofbirth_3i"));
 	  	Select s2=new Select(dob2);
 	     s2.selectByValue("7");
-	  d.findElement(By.id("user_address_attributes_street")).sendKeys(insDetails.get(3));
-	  d.findElement(By.id("user_address_attributes_city")).sendKeys(insDetails.get(4));
-	  d.findElement(By.id("user_address_attributes_county")).sendKeys(insDetails.get(5));
-	  d.findElement(By.id("user_address_attributes_postcode")).sendKeys(insDetails.get(6));
-	  d.findElement(By.id("user_user_detail_attributes_email")).sendKeys(insDetails.get(7));
-	  d.findElement(By.id("user_user_detail_attributes_password")).sendKeys(insDetails.get(8));
-	  d.findElement(By.id("user_user_detail_attributes_password_confirmation")).sendKeys(insDetails.get(9));
+	  d.findElement(By.id("user_address_attributes_street")).sendKeys(insDetails1.get("d4"));
+	  d.findElement(By.id("user_address_attributes_city")).sendKeys(insDetails1.get("d4"));
+	  d.findElement(By.id("user_address_attributes_county")).sendKeys(insDetails1.get("d5"));
+	  d.findElement(By.id("user_address_attributes_postcode")).sendKeys(insDetails1.get("d6"));
+	  d.findElement(By.id("user_user_detail_attributes_email")).sendKeys(insDetails1.get("d7"));
+	  d.findElement(By.id("user_user_detail_attributes_password")).sendKeys(insDetails1.get("d8"));
+	  d.findElement(By.id("user_user_detail_attributes_password_confirmation")).sendKeys(insDetails1.get("d8"));
 }
 
 @When("The user-one submits the form")
